@@ -4,13 +4,8 @@ import firebase from './firebase-config';
 
 const AuthRoute = () => {
     
-  const currentUser = firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      return true;
-    } else {
-      return false;
-    }
-  });
+  const currentUser = firebase.auth().currentUser;
+  console.log(currentUser);
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 };
 

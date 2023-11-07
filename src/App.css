@@ -23,6 +23,11 @@ table {
   pointer-events: none;
 }
 
+.logo-img {
+  width: 50px; /* Adjust the size as needed */
+  height: 50px; /* Adjust the size as needed */
+}
+
 
 
 .App-header {

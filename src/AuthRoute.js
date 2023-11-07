@@ -15,11 +15,6 @@ const AuthRoute = () => {
     };
   }, []);
 
-  if (currentUser === null) {
-    // Firebase is still checking the authentication state, you can show a loading spinner here
-    return <center>Loading...</center>;
-  }
-
   return currentUser ? <Outlet /> : <Navigate to="/login" />;
 };
 

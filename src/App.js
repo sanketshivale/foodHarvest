@@ -5,6 +5,9 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthRoute from './AuthRoute';
 import React from 'react';
+import Ngo from "./components/Dashboard/Ngo";
+import Farmer from "./components/Dashboard/Farmer";
+import Composter from "./components/Dashboard/Composter";
 
 function App() {
   return (
@@ -16,7 +19,11 @@ function App() {
 
           <Route path='/' element={<AuthRoute />}>
 
-            <Route path='/' element={<Dashboard />} />
+            <Route index element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/ngo" element={<Ngo />} />
+            <Route path="/composter" element={<Composter />} />
+            <Route path="/farmer" element={<Farmer />} />
 
           </Route>
         </Routes>

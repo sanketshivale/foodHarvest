@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import BookDataService from "../../services/book.services";
 
-const BooksList = ({ getBookId }) => {
+const FoodsList = ({ getFoodId }) => {
   const [books, setBooks] = useState([]);
   useEffect(() => {
     getBooks();
@@ -38,7 +38,7 @@ const BooksList = ({ getBookId }) => {
             <th>Edible-Food</th>
             <th>Non-Edible-Food</th>
             <th>Status</th>
-            <th>Action</th>
+            {getFoodId && (<th>Action</th>)}
             
           </tr>
         </thead>
@@ -55,11 +55,12 @@ const BooksList = ({ getBookId }) => {
                 <td>{doc.nonEdibleFood}</td>
                 
                 <td>{doc.status}</td>
-                <td>
+                {getFoodId && (
+                  <td>
                   <Button
                     variant="secondary"
                     className="edit"
-                    onClick={(e) => getBookId(doc.id)}
+                    onClick={(e) => getFoodId(doc.id)}
                   >
                     Edit
                   </Button>
@@ -71,6 +72,7 @@ const BooksList = ({ getBookId }) => {
                     Delete
                   </Button>
                 </td>
+                )}
               </tr>
             );
           })}
@@ -80,4 +82,4 @@ const BooksList = ({ getBookId }) => {
   );
 };
 
-export default BooksList;
+export default FoodsList;

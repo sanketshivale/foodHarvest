@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Alert, InputGroup, Button, ButtonGroup } from "react-bootstrap";
 import BookDataService from "../../services/book.services";
 
-const AddBook = ({ id, setBookId }) => {
+const AddFood = ({ id, setFoodId }) => {
   const [hotelName, setHotelname] = useState("");
   const [location, setLocation] = useState("");
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ const AddBook = ({ id, setBookId }) => {
     try {
       if (id !== undefined && id !== "") {
         await BookDataService.updateBook(id, newBook);
-        setBookId("");
+        setFoodId("");
         setMessage({ error: false, msg: "Updated successfully!" });
       } else {
         await BookDataService.addBooks(newBook);
@@ -198,4 +198,4 @@ const AddBook = ({ id, setBookId }) => {
   );
 };
 
-export default AddBook;
+export default AddFood;

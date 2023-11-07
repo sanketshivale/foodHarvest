@@ -26,8 +26,7 @@ const FoodsList = ({ getFoodId }) => {
         </Button>
       </div>
 
-      {/* <pre>{JSON.stringify(books, undefined, 2)}</pre>} */}
-      <Table striped bordered hover size="sm">
+      <Table responsive striped bordered hover size="sm">
         <thead>
           <tr>
             <th>#</th>
@@ -38,8 +37,7 @@ const FoodsList = ({ getFoodId }) => {
             <th>Edible-Food</th>
             <th>Non-Edible-Food</th>
             <th>Status</th>
-            {getFoodId && (<th>Action</th>)}
-            
+            {getFoodId && <th>Action</th>}
           </tr>
         </thead>
         <tbody>
@@ -53,25 +51,24 @@ const FoodsList = ({ getFoodId }) => {
                 <td>{doc.phoneNum}</td>
                 <td>{doc.edibleFood}</td>
                 <td>{doc.nonEdibleFood}</td>
-                
                 <td>{doc.status}</td>
                 {getFoodId && (
                   <td>
-                  <Button
-                    variant="secondary"
-                    className="edit"
-                    onClick={(e) => getFoodId(doc.id)}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    variant="danger"
-                    className="delete"
-                    onClick={(e) => deleteHandler(doc.id)}
-                  >
-                    Delete
-                  </Button>
-                </td>
+                    <Button
+                      variant="success"
+                      className="edit m-2"
+                      onClick={(e) => getFoodId(doc.id)}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="danger"
+                      className="delete m-2"
+                      onClick={(e) => deleteHandler(doc.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
                 )}
               </tr>
             );

@@ -1,34 +1,27 @@
-import { Container, Navbar } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import BrandLogo from "../../../assets/images/logo12.png"
+import BrandLogo from "../../../assets/images/logo12.png";
 
 function Navb() {
-    return (
-        <>
-            <Navbar bg="dark" variant="dark" className="header">
-                <Container className="d-flex justify-content-evenly">
-                    <div className="navbar-brand">
-                        <img src={BrandLogo} alt="Food Harvest App Logo" className="logo-img" />
-                        Food Harvest App
-                    </div>
-                    <ul className="navbar-nav ml-auto">
-                        <li className="nav-item">
-                            <Link to="/" className="nav-link">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/ngo" className="nav-link">NGO</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/composter" className="nav-link">Composter</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/farmer" className="nav-link">Farmer</Link>
-                        </li>
-                    </ul>
-                </Container>
-            </Navbar>
-        </>
-    );
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" className="header">
+      <Container>
+        <Navbar.Brand>
+          <img src={BrandLogo} alt="Food Harvest App Logo" className="logo-img" />
+          Food Harvest App
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link as={Link} to="/">Home</Nav.Link>
+            <Nav.Link as={Link} to="/ngo">NGO</Nav.Link>
+            <Nav.Link as={Link} to="/composter">Composter</Nav.Link>
+            <Nav.Link as={Link} to="/farmer">Farmer</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default Navb;

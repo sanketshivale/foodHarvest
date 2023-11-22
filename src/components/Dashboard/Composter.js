@@ -14,7 +14,7 @@ function Composter() {
       <Container>
         <Row>
           <Col>
-            <FoodsList />
+            <FoodsList isComposter={true} />
           </Col>
         </Row>
       </Container>

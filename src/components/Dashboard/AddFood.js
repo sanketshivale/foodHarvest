@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Alert, InputGroup, Button, ButtonGroup } from "react-bootstrap";
-import BookDataService from "../../services/book.services";
+import {bookDataService} from "../../services/service";
 
 const AddFood = ({ id, setFoodId }) => {
   const [hotelName, setHotelname] = useState("");
@@ -33,11 +33,11 @@ const AddFood = ({ id, setFoodId }) => {
 
     try {
       if (id !== undefined && id !== "") {
-        await BookDataService.updateBook(id, newBook);
+        await bookDataService.updateBook(id, newBook);
         setFoodId("");
         setMessage({ error: false, msg: "Updated successfully!" });
       } else {
-        await BookDataService.addBooks(newBook);
+        await bookDataService.addBooks(newBook);
         setMessage({ error: false, msg: "New Hotel added successfully!" });
       }
     } catch (err) {
@@ -56,7 +56,7 @@ const AddFood = ({ id, setFoodId }) => {
   const editHandler = async () => {
     setMessage("");
     try {
-      const docSnap = await BookDataService.getBook(id);
+      const docSnap = await bookDataService.getBook(id);
       console.log("the record is :", docSnap.data());
       setHotelname(docSnap.data().hotelName);
       setLocation(docSnap.data().location);

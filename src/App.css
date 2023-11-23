@@ -44,3 +44,9 @@ table {
 .App-link {
   color: #61dafb;
 }
+
+.image-height {
+  height: 180px; 
+  width: 300px;
+  border-radius: 15px; 
+}

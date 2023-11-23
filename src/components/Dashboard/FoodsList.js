@@ -21,7 +21,7 @@ const FoodsList = ({ getFoodId, isComposter, isHotel, isNgo }) => {
   return (
     <>
       <div className="mb-2">
-        <Button variant="dark edit" onClick={getBooks}>
+        <Button variant="dark edit p-2" onClick={getBooks}>
           Refresh List
         </Button>
       </div>

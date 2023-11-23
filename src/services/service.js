@@ -5,6 +5,8 @@ import { getFirestore, collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc
 const db = getFirestore(app);
 const bookCollectionRef = collection(db, "books");
 const userCollectionRef = collection(db, "users");
+const composeCollectionRef = collection(db, "composters");
+
 class BookDataService {
 
   addBooks = (newBook) => {
@@ -62,6 +64,36 @@ class UserDataService {
   };
 }
 
+class ComposterDataService {
+   
+  addComposter = (newComposter) => {
+    return addDoc(composeCollectionRef, newComposter);
+  }
+
+  updateComposter = (id, updatedComposter) => {
+    const composterDoc = doc(db, "composters", id);
+    return updateDoc(composterDoc, updatedComposter);
+  }
+
+  deleteComposter = (id) => {
+    const composterDoc = doc(db, "composters", id);
+    return deleteDoc(composterDoc);
+  }
+
+  getAllComposters = () => {
+    return getDocs(composeCollectionRef);
+  }
+
+  getComposter = (id) => {
+
+    const composterDoc = doc(db, "composters", id);
+    return getDoc(composterDoc);
+  }
+
+}
+
 const bookDataService = new BookDataService();
 const userDataService = new UserDataService();
-export { bookDataService, userDataService };
+const composterDataService = new ComposterDataService();
+
+export { bookDataService, userDataService, composterDataService };

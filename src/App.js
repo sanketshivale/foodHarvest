@@ -8,6 +8,7 @@ import React from 'react';
 import Ngo from "./components/Dashboard/Ngo";
 import Farmer from "./components/Dashboard/Farmer";
 import Composter from "./components/Dashboard/Composter";
+import Home from "./components/Dashboard/Home";
 
 function App() {
   const [userRole, setUserRole] = React.useState(null);
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login setUserRole = {setUserRole}  />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home/>} />
 
           <Route path='/' element={<AuthRoute setUserRole={setUserRole} />}>
 

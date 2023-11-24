@@ -79,7 +79,7 @@ const FoodsList = ({ getFoodId, isComposter, isHotel, isNgo }) => {
                         variant="success"
                         className="edit m-2"
                       >
-                       <a className="text-white edit m-2" href={`tel:${doc.phone}`}>Call</a>
+                       <a className="text-white edit m-2" href={`tel:${doc.phoneNum}`}>Call</a>
                       </Button>
                       <Button
                         variant="success"

@@ -1,96 +1,76 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
-import {composterDataService} from "../../../services/service";
+import { Card, Button } from "react-bootstrap";
+import { composterDataService } from "../../../services/service";
 
 const ComposterList = ({ getComposterId }) => {
-  const [composters, setComposter] = useState([]);
+  const [composters, setComposters] = useState([]);
+
   useEffect(() => {
-    getComposterFertilzer();
+    getComposterFertilizer();
   }, []);
- 
-  const getComposterFertilzer = async () => {
+
+  const getComposterFertilizer = async () => {
     const data = await composterDataService.getAllComposters();
-    console.log(data.docs);
-    setComposter(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setComposters(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   const deleteHandler = async (id) => {
     await composterDataService.deleteComposter(id);
-    getComposterFertilzer();
+    getComposterFertilizer();
   };
-  return (
+
+  return  (
     <>
-      <div className="mb-2">
-        <Button variant="dark edit p-2" onClick={getComposterFertilzer}>
+      <div className="d-flex flex-wrap justify-content-between mb-2">
+        <Button variant="dark edit p-2" onClick={getComposterFertilizer}>
           Refresh List
         </Button>
       </div>
 
-      <Table responsive striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Composter Name</th>
-            <th>Location</th>
-            <th>Email</th>
-            <th>Phone-no</th>
-            <th>Compose Fertilizer</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {composters.map((doc, index) => {
-            return (
-              <tr key={doc.id}>
-                <td>{index + 1}</td>
-                <td>{doc.composterName}</td>
-                <td>{doc.location}</td>
-                <td>{doc.email}</td>
-                <td>{doc.phoneNum}</td>
-                <td>{doc.composeFertilizer}</td>
-                <td>{doc.status}</td>
-                {getComposterId && (
-                  <td>
-                    <Button
-                      variant="success"
-                      className="edit m-2"
-                      onClick={(e) => getComposterId(doc.id)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      variant="danger"
-                      className="delete m-2"
-                      onClick={(e) => deleteHandler(doc.id)}
-                    >
-                      Delete
-                    </Button>
-                  </td>
-                )}
-                {
-                  !getComposterId && (
-                    <td>
-                      <Button
-                        variant="success"
-                        className="edit m-2"
-                      >
-                       <a className="text-white edit m-2" href={`tel:${doc.phone}`}>Call</a>
-                      </Button>
-                      <Button
-                        variant="success"
-                        className="edit m-2"
-                        >
-                          <a className="text-white" href={`mailto:${doc.email}`}>Mail</a>
-                        </Button>
-                    </td>
-                  )
-                }
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <div className="card-container d-flex flex-wrap justify-content-center">
+        {composters.map((composter, index) => (
+          <Card key={composter.id} className="m-2" style={{ width: "18rem", borderRadius: "16px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
+            <Card.Body>
+              <Card.Title style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{composter.composterName}</Card.Title>
+            
+              <Card.Text>Location: {composter.location}</Card.Text>
+              <Card.Text>Email: {composter.email}</Card.Text>
+              <Card.Text>Phone no: {composter.phoneNum}</Card.Text>
+              <Card.Text>Compose Fertilizer: {composter.composeFertilizer}</Card.Text>
+              <Card.Text>Quantity: {composter.kg} KG</Card.Text>
+              <Card.Text>Status: {composter.status}</Card.Text>
+              
+              {getComposterId ? (
+                <div>
+                 <Button
+                    variant="success"
+                    className="edit mr-2"
+                    onClick={() => getComposterId(composter.id)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="danger"
+                    className="delete"
+                    onClick={() => deleteHandler(composter.id)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              ) : (
+                <div>
+                  <Button variant="success" className="edit mr-2">
+                    <i className="bi bi-telephone-fill"></i> <a className="text-white" href={`tel:${composter.phoneNum}`}>Call</a>
+                  </Button>
+                  <Button variant="success" className="edit">
+                    <i className="bi bi-envelope-fill"></i> <a className="text-white" href={`mailto:${composter.email}`}>Mail</a>
+                  </Button>
+                </div>
+              )}
+            </Card.Body>
+          </Card>
+        ))}
+      </div>
     </>
   );
 };

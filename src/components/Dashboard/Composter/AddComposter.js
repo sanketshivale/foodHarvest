@@ -9,6 +9,7 @@ const AddComposter = ({ id, setComposterId }) => {
   const [phoneNum, setPhoneNum] = useState("");
   const [composeFertilizer, setComposeFertilizer] = useState("");
   const [status, setStatus] = useState("Available");
+  const [kg, setKg] = useState(0);
   const [flag, setFlag] = useState(true);
   const [message, setMessage] = useState({ error: false, msg: "" });
 
@@ -25,7 +26,8 @@ const AddComposter = ({ id, setComposterId }) => {
       email,
       phoneNum,
       composeFertilizer,      
-      status
+      status,
+      kg
     };
 
 
@@ -61,6 +63,7 @@ const AddComposter = ({ id, setComposterId }) => {
       setPhoneNum(docSnap.data().phoneNum);
       setComposeFertilizer(docSnap.data().composeFertilizer);
       setStatus(docSnap.data().status);
+      setKg(docSnap.data().kg);
     } catch (err) {
       setMessage({ error: true, msg: err.message });
     }
@@ -88,7 +91,7 @@ const AddComposter = ({ id, setComposterId }) => {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBookTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">B</InputGroup.Text>
+              <InputGroup.Text id="formBookTitle">1</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Composter Name"
@@ -100,7 +103,7 @@ const AddComposter = ({ id, setComposterId }) => {
 
           <Form.Group className="mb-3" controlId="formBookTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">B</InputGroup.Text>
+              <InputGroup.Text id="formBookTitle">2</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Location"
@@ -112,7 +115,7 @@ const AddComposter = ({ id, setComposterId }) => {
 
           <Form.Group className="mb-3" controlId="formBookTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">B</InputGroup.Text>
+              <InputGroup.Text id="formBookTitle">3</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Email"
@@ -124,7 +127,7 @@ const AddComposter = ({ id, setComposterId }) => {
 
           <Form.Group className="mb-3" controlId="formBookTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">B</InputGroup.Text>
+              <InputGroup.Text id="formBookTitle">4</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Phone-No"
@@ -136,12 +139,25 @@ const AddComposter = ({ id, setComposterId }) => {
 
           <Form.Group className="mb-3" controlId="formBookTitle">
             <InputGroup>
-              <InputGroup.Text id="formBookTitle">B</InputGroup.Text>
+              <InputGroup.Text id="formBookTitle">5</InputGroup.Text>
               <Form.Control
                 type="text"
                 placeholder="Add Compost Fertilizer"
                 value={composeFertilizer}
                 onChange={(e) => setComposeFertilizer(e.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+
+
+          <Form.Group className="mb-3" controlId="formBookTitle">
+            <InputGroup>
+              <InputGroup.Text id="formBookTitle">6</InputGroup.Text>
+              <Form.Control
+                type="number"
+                placeholder="Add Composition in Kg"
+                value={kg}
+                onChange={(e) => setKg(e.target.value)}
               />
             </InputGroup>
           </Form.Group>

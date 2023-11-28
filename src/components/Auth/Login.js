@@ -19,6 +19,12 @@ const Login = (props) => {
             console.log(user.user.uid)
 
             if (user && user.user) {
+
+              if (!user.user.emailVerified) {
+                alert('Please verify your email before logging in.');
+                return; // Stop further execution
+            }
+              
                 const userDoc = await userDataService.getUserByUID(user.user.uid)
 
                 console.log(userDoc.docs[0].data())
@@ -38,7 +44,7 @@ const Login = (props) => {
             
                       // Redirect based on role
                       if (role === 'hotel') {
-                        Navigate('/hotel');
+                        Navigate('/');
                       } else if (role === 'farmer') {
                         Navigate('/farmer');
                       } else if (role === 'ngo') {

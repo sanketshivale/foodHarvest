@@ -21,8 +21,11 @@ const Login = (props) => {
             if (user && user.user) {
 
               if (!user.user.emailVerified) {
-                alert('Please verify your email before logging in.');
-                return; // Stop further execution
+
+                await user.user.sendEmailVerification();
+
+                alert('Please verify your email before logging in. The new Link to verify is send to the email you provided during signup.');
+                return; 
             }
               
                 const userDoc = await userDataService.getUserByUID(user.user.uid)
